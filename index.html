@@ -184,7 +184,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("Capa.jpeg") center/contain no-repeat;
+  background: url("Capa.jpeg") center/cover no-repeat;
   z-index: -1;
 }
       #capa.oculto {
@@ -918,7 +918,7 @@
         position: relative;
         width: 100%;
         max-width: 480px;
-        height: 640px;
+        height: 700px;
         margin: 40px auto 0;
         overflow: hidden;
         border-top-left-radius: 220px;
@@ -934,24 +934,23 @@
         height: 100%;
         object-fit: cover;
       }
-
-      @media (max-width: 600px) {
+@media (max-width: 600px) {
         .arco-noivos {
           max-width: 100%;
-          height: 560px;
+          height: 640px;
         }
       }
-
-    .overlay-info-noivos {
+.overlay-info-noivos {
         position: absolute;
         inset: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: 10px;
-        padding: 20px;
-        padding-top: 160px;
+        gap: 8px;
+        padding: 15px;
+        padding-top: 140px;
+        padding-bottom: 15px;
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.55));
         z-index: 2;
         text-align: center;
@@ -1007,11 +1006,12 @@
       }
 @media (max-width: 600px) {
         .overlay-info-noivos {
-          padding-top: 190px;
-          gap: 6px;
+          padding-top: 170px;
+          padding-bottom: 15px;
+          gap: 5px;
         }
         .nome-overlay {
-          font-size: 2.1rem;
+          font-size: 1.6rem;
         }
       }
       @media (max-width: 768px) {
@@ -2423,8 +2423,8 @@ background: linear-gradient(135deg, #967bb6, #7a5f99);  /* Círculo roxo */  bor
 /* CELULAR - foto da capa completa */
 @media (max-width: 768px) {
   #capa::after {
-    background: url("Capa.jpeg") center/contain no-repeat;
-    background-size: contain;
+    background: url("Capa.jpeg") center/cover no-repeat;
+    background-size: cover;
   }
 }
 #os-noivos h2 {
@@ -2654,7 +2654,7 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
             <div class="moldura-principal">
               <img
                 src="Foto1.jpeg"
-                alt="Edmilson e Farida"
+                alt="Bento e Sara"
                 class="foto-casal-principal"
               />
             </div>
@@ -2692,40 +2692,39 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
 
       <!-- OS NOIVOS - SCROLL 4 (AGORA APÓS ARISTÓTELES) -->
 <section id="os-noivos" class="secao">
-        <div class="conteudo-secao">
-          <h2>Os Noivos</h2>
+  <div class="conteudo-secao">
+    <h2>Os Noivos</h2>
 
-          <div class="arco-noivos">
-            <img src="Noivos.jpeg" alt="Bento e Sara" />
-            <div class="overlay-info-noivos">
-              <div class="noiva">
-                <span class="nome-overlay">Sara</span>
-                <div class="linha-overlay"></div>
-                <p class="pais-overlay">
-                  <strong>Filha de:</strong><br />
-                  Mário Manuel<br />
-                  e<br />
-                  Joana Rafael
-                </p>
-              </div>
-
-              <i class="fas fa-heart coracao-overlay"></i>
-
-              <div class="noivo">
-                <span class="nome-overlay">Bento</span>
-                <div class="linha-overlay"></div>
-                <p class="pais-overlay">
-                  <strong>Filho de:</strong><br />
-                  Daniel Muchanga<br />
-                  e<br />
-                  Anastância Saveca
-                </p>
-              </div>
-            </div>
-          </div>
+    <div class="arco-noivos">
+      <img src="Noivos.jpeg" alt="Bento e Sara" />
+      <div class="overlay-info-noivos">
+        <div class="noiva">
+          <span class="nome-overlay">Sara Mabecuane</span>
+          <div class="linha-overlay"></div>
+          <p class="pais-overlay">
+            <strong>Filha de:</strong><br />
+            Mário Manuel<br />
+            e<br />
+            Joana Rafael
+          </p>
         </div>
-      </section>
-      
+
+        <i class="fas fa-heart coracao-overlay"></i>
+
+        <div class="noivo">
+          <span class="nome-overlay">Bento Muxlhanga</span>
+          <div class="linha-overlay"></div>
+          <p class="pais-overlay">
+            <strong>Filho de:</strong><br />
+            Daniel Muchanga<br />
+            e<br />
+            Anastância Saveca
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <!-- SAUDAÇÃO - SCROLL 5 (ANTIGO SCROLL 3) -->
       <section id="saudacao" class="secao">
@@ -2941,7 +2940,7 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
             >
               <img
                 src="Foto3.jpeg"
-                alt="Edmilson e Farida"
+                alt="Bento e Sara"
                 class="galeria-img-elegante"
               />
               <div class="galeria-overlay">
@@ -2955,7 +2954,7 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
             >
               <img
                 src="Foto4.jpeg"
-                alt="Edmilson e Farida"
+                alt="Bento e Sara"
                 class="galeria-img-elegante"
               />
               <div class="galeria-overlay">
@@ -2969,7 +2968,7 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
             >
               <img
                 src="Capa.jpeg"
-                alt="Edmilson e Farida"
+                alt="Bento e Sara"
                 class="galeria-img-elegante"
               />
               <div class="galeria-overlay">
@@ -2977,7 +2976,7 @@ color: rgba(74, 58, 92, 0.7);  /* Roxo escuro translúcido */  transition: all 0
               </div>
             </div>
             <div class="galeria-item-elegante" onclick="abrirModal(3)" style="--item-index: 3">
-    <img src="Foto5.jpeg" alt="Edmilson e Farida" class="galeria-img-elegante" />
+    <img src="Foto5.jpeg" alt="Bento e Sara" class="galeria-img-elegante" />
     <div class="galeria-overlay">
       <i class="fas fa-search-plus"></i>
     </div>
@@ -4246,9 +4245,9 @@ window.addEventListener('load', function() {
 import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   const firebaseConfig = {
     apiKey: "AIzaSyAsXcP98tL4l8REoZdGJtgC2w0oAMDxRcs",
-    authDomain: "casamentodoedmilsonefarida.firebaseapp.com",
-    projectId: "casamentodoedmilsonefarida",
-    storageBucket: "casamentodoedmilsonefarida.firebasestorage.app",
+    authDomain: "casamentodoBentoeSara.firebaseapp.com",
+    projectId: "casamentodoBentoeSara",
+    storageBucket: "casamentodoBentoeSara.firebasestorage.app",
     messagingSenderId: "113127738183",
     appId: "1:113127738183:web:acf1f999d2f36e031a9a62"
   };
