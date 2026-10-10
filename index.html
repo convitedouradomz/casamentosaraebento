@@ -3581,23 +3581,43 @@ function atualizarContador() {
   const diaDoCasamento = agora.toDateString() === dataCasamento.toDateString();
   const depoisDoCasamento = agora >= new Date("2026-10-11T00:00:00");
 
-  // mensagem especial (a contagem fica sempre visível)
+  const tituloContador = document.querySelector("#contador h2");
   const mensagemEl = document.getElementById("mensagemEspecialContador");
-  if (mensagemEl) {
+
+  if (mensagemEl && tituloContador) {
     if (diaDoCasamento) {
+      tituloContador.innerHTML = "🎉 Hoje é o nosso grande dia! 🎉";
+      tituloContador.style.fontSize = "2rem";
+      tituloContador.style.color = "#d4af37";
       mensagemEl.style.display = "block";
-      mensagemEl.innerHTML =
-        '<i class="fas fa-heart"></i><h3>Hoje é o nosso grande dia!</h3><p>O dia mais feliz das nossas vidas chegou. Contamos com a sua presença!</p>';
+      mensagemEl.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+          <i class="fas fa-heart" style="font-size: 4rem; color: #d4af37; margin-bottom: 20px;"></i>
+          <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #8a9a5b;">Casamos Hoje!</h3>
+          <p style="font-size: 1.5rem; margin-top: 20px;">O dia mais feliz das nossas vidas chegou! ❤️</p>
+          <p style="font-size: 1.2rem; margin-top: 15px;">Contamos com a sua presença para celebrar connosco!</p>
+        </div>`;
     } else if (depoisDoCasamento) {
+      tituloContador.innerHTML = "💍 Finalmente Casados! 💍";
+      tituloContador.style.fontSize = "2rem";
+      tituloContador.style.color = "#d4af37";
       mensagemEl.style.display = "block";
-      mensagemEl.innerHTML =
-        '<i class="fas fa-ring"></i><h3>Finalmente Casados!</h3><p>Obrigado a todos por tornarem este dia especial.</p>';
+      mensagemEl.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+          <i class="fas fa-check-circle" style="font-size: 4rem; color: #8a9a5b; margin-bottom: 20px;"></i>
+          <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d4af37;">Sim, aceitamos! 💑</h3>
+          <p style="font-size: 1.5rem; margin-top: 20px;">Obrigado a todos que celebraram este dia especial connosco!</p>
+          <p style="font-size: 1.2rem; margin-top: 15px;">Um novo capítulo começa... ❤️</p>
+        </div>`;
     } else {
+      tituloContador.innerHTML = "Contagem Regressiva";
+      tituloContador.style.fontSize = "";
+      tituloContador.style.color = "";
       mensagemEl.style.display = "none";
     }
   }
 
-  // contagem
+  // contagem (sempre visível)
   let diferenca = dataCasamento - agora;
   if (diferenca < 0) diferenca = 0;
 
