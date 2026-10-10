@@ -3575,115 +3575,60 @@ musicaFundo.addEventListener("ended", function() {
 
       // Contador regressivo
       // Contador regressivo com mensagens especiais
-      function atualizarContador() {
-        const dataCasamento = new Date("2026-10-10T11:00:00").getTime();
-        const agora = new Date().getTime();
-        const diferenca = dataCasamento - agora;
+function atualizarContador() {
+  const dataCasamento = new Date("2026-10-10T11:00:00");
+  const agora = new Date();
+  const diaDoCasamento = agora.toDateString() === dataCasamento.toDateString();
+  const depoisDoCasamento = agora >= new Date("2026-10-11T00:00:00");
 
-       const hoje = new Date();
-        const dataHoje = hoje.toDateString();
-        const dataCasamentoString = new Date("2026-10-10T11:00:00").toDateString();
-        const diaSeguinte = new Date("2026-10-11T00:00:00").toDateString();
-        // Verificar se é dia do casamento
-        if (dataHoje === dataCasamentoString) {
-          const tituloContador = document.querySelector("#contador h2");
-          if (tituloContador) {
-            tituloContador.innerHTML = "🎉 Hoje é o nosso grande dia! 🎉";
-            tituloContador.style.fontSize = "2rem";
-            tituloContador.style.color = "#d4af37";
-          }
+  // mensagem especial (a contagem fica sempre visível)
+  const mensagemEl = document.getElementById("mensagemEspecialContador");
+  if (mensagemEl) {
+    if (diaDoCasamento) {
+      mensagemEl.style.display = "block";
+      mensagemEl.innerHTML =
+        '<i class="fas fa-heart"></i><h3>Hoje é o nosso grande dia!</h3><p>O dia mais feliz das nossas vidas chegou. Contamos com a sua presença!</p>';
+    } else if (depoisDoCasamento) {
+      mensagemEl.style.display = "block";
+      mensagemEl.innerHTML =
+        '<i class="fas fa-ring"></i><h3>Finalmente Casados!</h3><p>Obrigado a todos por tornarem este dia especial.</p>';
+    } else {
+      mensagemEl.style.display = "none";
+    }
+  }
 
-          const contadorContainer = document.querySelector(
-            ".contador-container-elegante",
-          );
-          if (contadorContainer) {
-            contadorContainer.innerHTML = `
-        <div style="text-align: center; padding: 40px;">
-          <i class="fas fa-heart" style="font-size: 4rem; color: #d4af37; margin-bottom: 20px;"></i>
-          <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #8a9a5b;">Casamos Hoje!</h3>
-          <p style="font-size: 1.5rem; margin-top: 20px;">O dia mais feliz das nossas vidas chegou! ❤️</p>
-          <p style="font-size: 1.2rem; margin-top: 15px;">Contamos com a sua presença para celebrar connosco!</p>
-        </div>
-      `;
-          }
-          return;
-        }
+  // contagem
+  let diferenca = dataCasamento - agora;
+  if (diferenca < 0) diferenca = 0;
 
-        // Verificar se é dia seguinte ao casamento (09/08/2026)
-        if (dataHoje === diaSeguinte) {
-          const tituloContador = document.querySelector("#contador h2");
-          if (tituloContador) {
-            tituloContador.innerHTML = "💍 Finalmente Casados! 💍";
-            tituloContador.style.fontSize = "2rem";
-            tituloContador.style.color = "#d4af37";
-          }
+  const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-          const contadorContainer = document.querySelector(
-            ".contador-container-elegante",
-          );
-          if (contadorContainer) {
-            contadorContainer.innerHTML = `
-        <div style="text-align: center; padding: 40px;">
-          <i class="fas fa-check-circle" style="font-size: 4rem; color: #8a9a5b; margin-bottom: 20px;"></i>
-          <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d4af37;">Sim, aceitamos! 💑</h3>
-          <p style="font-size: 1.5rem; margin-top: 20px;">Obrigado a todos que celebraram este dia especial connosco!</p>
-          <p style="font-size: 1.2rem; margin-top: 15px;">Um novo capítulo começa... ❤️</p>
-        </div>
-      `;
-          }
-          return;
-        }
+  const atualizarComAnimacao = (elemento, novoValor) => {
+    if (!elemento) return;
+    const valorAtual = parseInt(elemento.textContent);
+    if (valorAtual !== novoValor) {
+      elemento.style.transform = "scale(1.2)";
+      elemento.style.color = "var(--dourado)";
+      setTimeout(() => {
+        elemento.textContent = novoValor.toString().padStart(2, "0");
+        elemento.style.transform = "scale(1)";
+        setTimeout(() => {
+          elemento.style.color = "";
+        }, 300);
+      }, 200);
+    } else {
+      elemento.textContent = novoValor.toString().padStart(2, "0");
+    }
+  };
 
-        // Se não for o dia do casamento nem o seguinte, mostrar contador normal
-        if (diferenca < 0) {
-          const diasElem = document.getElementById("dias");
-          const horasElem = document.getElementById("horas");
-          const minutosElem = document.getElementById("minutos");
-          const segundosElem = document.getElementById("segundos");
-          if (diasElem) diasElem.textContent = "00";
-          if (horasElem) horasElem.textContent = "00";
-          if (minutosElem) minutosElem.textContent = "00";
-          if (segundosElem) segundosElem.textContent = "00";
-          return;
-        }
-
-        const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-        const horas = Math.floor(
-          (diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
-        const minutos = Math.floor(
-          (diferenca % (1000 * 60 * 60)) / (1000 * 60),
-        );
-        const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-
-        const atualizarComAnimacao = (elemento, novoValor) => {
-          if (!elemento) return;
-          const valorAtual = parseInt(elemento.textContent);
-          if (valorAtual !== novoValor) {
-            elemento.style.transform = "scale(1.2)";
-            elemento.style.color = "var(--dourado)";
-            setTimeout(() => {
-              elemento.textContent = novoValor.toString().padStart(2, "0");
-              elemento.style.transform = "scale(1)";
-              setTimeout(() => {
-                elemento.style.color = "";
-              }, 300);
-            }, 200);
-          } else {
-            elemento.textContent = novoValor.toString().padStart(2, "0");
-          }
-        };
-
-        const diasElem = document.getElementById("dias");
-        const horasElem = document.getElementById("horas");
-        const minutosElem = document.getElementById("minutos");
-        const segundosElem = document.getElementById("segundos");
-
-        if (diasElem) atualizarComAnimacao(diasElem, dias);
-        if (horasElem) atualizarComAnimacao(horasElem, horas);
-        if (minutosElem) atualizarComAnimacao(minutosElem, minutos);
-        if (segundosElem) atualizarComAnimacao(segundosElem, segundos);
-      }
+  atualizarComAnimacao(document.getElementById("dias"), dias);
+  atualizarComAnimacao(document.getElementById("horas"), horas);
+  atualizarComAnimacao(document.getElementById("minutos"), minutos);
+  atualizarComAnimacao(document.getElementById("segundos"), segundos);
+}
 function adicionarCalendario(evento) {
   let titulo, dataInicio, dataFim, local, descricao;
   if (evento === 'casamento') {
